@@ -27,21 +27,22 @@ const ToDoList = () => {
                 placeholder='Input your Email'
                 {...register("Email",
                 {required:"Email is required",
+                validate: {noEz:(value)=>value.includes("ez")? "can not use ez":true},
                 pattern:{
                     value:/^[A-Za-z0-9._%+-]+@naver.com$/,
                     message: "Only naver.com emails allowed"},
                 minLength:{
                     value:5,
-                    message: "over 5"
-                }})}/>
+                    message: "over 5"},
+                    
+                })}/>
                 <span>
                     {errors?.Email?.message}
                 </span>
 
                 <input 
                 placeholder='Input your password'
-                {...register("password",{required:"Id is required",minLength:{value:5, message:"over 5"}})}
-                />
+                {...register("password",{required:"Id is required"})}/>
                 <span>{errors?.password?.message}</span>
                 <input 
                 placeholder='Input your password'
