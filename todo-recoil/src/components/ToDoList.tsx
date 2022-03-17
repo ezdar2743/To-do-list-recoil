@@ -1,6 +1,6 @@
 
 import {  useRecoilValue} from 'recoil';
-import {  toDo } from '../atoms';
+import {  toDoState } from '../atoms';
 import ToDo from './ToDo';
 import ToDoForm from './ToDoForm';
 
@@ -8,7 +8,7 @@ import ToDoForm from './ToDoForm';
 
 
 const ToDoList = () => {
-    const toDos = useRecoilValue(toDo);
+    const toDos = useRecoilValue(toDoState);
     return (
         <>
         <h1> To do list with recoil</h1>
