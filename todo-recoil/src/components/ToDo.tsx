@@ -1,6 +1,22 @@
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
 import { IToDos, toDoState } from '../atoms';
+const Btn = styled.button`
+    font-size: 18px;
+    width: 80px;
+    border-radius: 15px;
+    margin-left: 10px;
+    background-color: ${props=>props.theme.accentColor};
+    color: ${props=>props.theme.textColor};
+    transition: 0.5 ease-in;
+    cursor: pointer;
+    border: none;
+    &:hover{
+        background-color: ${props=>props.theme.textColor};
+        color: ${props=>props.theme.accentColor};
+        transform: scale(1.1);
+    }`;
 const ToDo = ({text,category,id}:IToDos) => {
 
     const setToDos = useSetRecoilState(toDoState)

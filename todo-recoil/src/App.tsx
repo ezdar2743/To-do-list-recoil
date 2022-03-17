@@ -59,6 +59,9 @@ a{
 text-decoration: none;
 color:inherit;
 }
+h1{
+  font-size: 32px;
+}
 `;
 
 const App = () => {
