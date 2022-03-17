@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { IToDos, toDoState } from '../atoms';
+import { Categories, IToDos, toDoState } from '../atoms';
 // const Btn = styled.button`
 //     font-size: 18px;
 //     width: 80px;
@@ -36,9 +36,9 @@ const ToDo = ({text,category,id}:IToDos) => {
     return (
         <li>
             <span>{text}</span>
-            {category !== "TO_DO"&&<button onClick={()=>onClick("TO_DO")}>To do</button>}
-            {category !== "DOING"&&<button onClick={()=>onClick("DOING")}>Doing</button>}
-            {category !== "DONE" &&<button onClick={()=>onClick("DONE")}>Done</button>}
+            {category !== Categories.TO_DO&&<button onClick={()=>onClick(Categories.TO_DO)}>To do</button>}
+            {category !== Categories.DOING&&<button onClick={()=>onClick(Categories.DOING)}>Doing</button>}
+            {category !== Categories.DONE &&<button onClick={()=>onClick(Categories.DONE)}>Done</button>}
         
         </li>
     );

@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { toDoState } from '../atoms';
+import { categoryState, toDoState } from '../atoms';
 
 // const Header = styled.div`
 //     height: 100px;
@@ -37,10 +37,11 @@ interface IForm{
 }
 const ToDoForm = () => {
     const setToDos = useSetRecoilState(toDoState);
+    const category= useRecoilValue(categoryState);
     const {register,handleSubmit,setValue}= useForm<IForm>();
     
     const onSubmit=(data:IForm)=>{
-        setToDos(preData=>[{text:data.toDo, category:'TO_DO', id:Date.now()},...preData])
+        setToDos(preData=>[{text:data.toDo, category, id:Date.now()},...preData])
         setValue("toDo","")    
     }
     return (
