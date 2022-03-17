@@ -1,7 +1,8 @@
 
-import {  useRecoilValue} from 'recoil';
+import React from 'react';
+import {  useRecoilState, useRecoilValue} from 'recoil';
 import styled from 'styled-components';
-import {  toDoSelector } from '../atoms';
+import {  categoryState, toDoSelector } from '../atoms';
 import ToDo from './ToDo';
 import ToDoForm from './ToDoForm';
 
@@ -13,38 +14,27 @@ const Container = styled.div`
 const Box = styled.div`
     `;
 
-
 const ToDoList = () => {
-    const [toDo,doing,done] = useRecoilValue(toDoSelector);
+    
+    const [category,setCategory] = useRecoilState(categoryState);
+    const toDos = useRecoilValue(toDoSelector);
+    const onInput= (event : React.FormEvent<HTMLSelectElement>)=>{
+        setCategory(event.currentTarget.value)
+    }
+    console.log(category)
     return (
         <>
         <h1> To do list with recoil</h1>
         <hr/>
-            
+            <select onInput={onInput} >
+                <option value="TO_DO">To Do</option>
+                <option value="DOING">Doing</option>
+                <option value="DONE">Done</option>
+            </select>
             <ToDoForm/>
-            <Container>
-                <Box>
-                    <h1>TO DO</h1>
-                    <hr/>
-                    <ul>
-                    {toDo.map(todo=> <ToDo {...todo}  key={todo.id}/>)}
-                </ul>
-                </Box>
-                <Box>
-                <h1>DOING</h1>
-                <hr/>
-                <ul>
-                {doing.map(todo=> <ToDo {...todo}  key={todo.id}/>)}
-                </ul>
-                </Box>
-                <Box>
-                <h1>DONE</h1>
-                <hr/>
-                <ul>
-                {done.map(todo=> <ToDo {...todo}  key={todo.id}/>)}
-                </ul>
-                </Box>
-            </Container>
+            {toDos?.map(todo=><ToDo key={todo.id} {...todo}/>)}
+            
+            
         </>
     );
 };
