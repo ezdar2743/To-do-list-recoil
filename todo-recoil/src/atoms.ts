@@ -33,6 +33,7 @@ export const categoryState = atom<Categories>({
 export const toDoSelector = selector({
     key: "toDoSelector",
     get:({get})=>{
+        
         const toDos = get(toDoState);
         const category = get(categoryState);
         if(category===Categories.TO_DO) return toDos.filter(toDo => toDo.category ===Categories.TO_DO)
